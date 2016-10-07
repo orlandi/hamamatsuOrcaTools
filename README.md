@@ -14,7 +14,8 @@ Based on the [HISReader](http://www.openmicroscopy.org/site/support/bio-formats5
 of The Open Microscopy Environment.
 
 ### Installation
-Copy the file [HIS_opener.py](HIS_opener.py) somwhere inside the plugins folder in ImageJ.
+Copy the file [HIS_opener.py](HIS_opener.py) somwhere inside the plugins folder in ImageJ. To download only that
+file press the Raw button and "Save As" in your browser.
 
 Typical location is `FIJI.app/plugins/Scripts/Plugins`
 Restart ImageJ and `HIS opener` should appear at the bottom of the Plugins menu.
