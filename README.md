@@ -29,7 +29,7 @@ Select HIS opener from the ImageJ plugins menu and select the HIS file.
 This script quickly opens as a VirtualStack the typical DCIMG files generated with 
 HCImage and Hamamatsu Orca cameras (tested on Orca Flash 2.8 and 4.0 and HCImage Live 4.3). 
 
-Based on the Python module for reading Hamamatsu DCIMG files from [Stuart Littlefair](https://github.com/StuartLittlefair/dcimg)
+Based on the Python module for reading Hamamatsu DCIMG files from [Stuart Littlefair](https://github.com/StuartLittlefair/dcimg).
 
 ### Installation
 Copy the file [DCIMG_opener.py](DCIMG_opener.py) somwhere inside the plugins folder in ImageJ. To download only that

@@ -76,13 +76,15 @@ def main():
 
   finfo = FileInfo()
   finfo.fileName = imp
-  finfo.width = hdr['xsize_req']
+  #finfo.width = hdr['xsize_req']
+  finfo.width = hdr['xsize']
   finfo.height = hdr['ysize']
   finfo.nImages = hdr['nframes']
   finfo.offset = 232
   finfo.fileType = hdr['bitdepth']/8-1 #Ugh
   finfo.intelByteOrder = 1
-  finfo.gapBetweenImages = int(hdr['bytes_per_img']*(1-float(hdr['xsize_req'])/float(hdr['xsize'])))
+  #finfo.gapBetweenImages = int(hdr['bytes_per_img']*(1-float(hdr['xsize_req'])/float(hdr['xsize'])))
+  finfo.gapBetweenImages = 0
   finfo.fileFormat = 1
   finfo.samplesPerPixel = 1
   finfo.displayRanges = None
