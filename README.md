@@ -24,6 +24,9 @@ Restart ImageJ and `HIS opener` should appear at the bottom of the Plugins menu.
 ### Usage
 Select HIS opener from the ImageJ plugins menu and select the HIS file.
 
+### Bugs
+It looks like at some point Hokawo changed bit endianness. And I have no idea where that info is stored inside the HIS file (I am not even sure it is actually stored). So if the resulting movie makes no sense, you might have to change ` finfo.intelByteOrder` to `1` in the script.
+
 ## Hamamatsu DCIMG ImageJ VirtualStack Opener
 
 This script quickly opens as a VirtualStack the typical DCIMG files generated with 
