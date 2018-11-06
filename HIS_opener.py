@@ -93,17 +93,36 @@ def main():
   gap = struct.unpack('<h', fID.read(2))[0]
 
   # Now let's check the metadata size across several frames to see if it's consistent
-  vals = range(1, 11)
+  vals = range(1, frames, int(frames/100))
   md_old = gap
   metadataInconsistency = 0
-  for it in vals:
-    val = int(float(it)/10*frames)
-    cPixel = (width*height*(fileType)+gap+64)*(val-2)+offset+64+width*height*(fileType)+2
+  for it in range(0, len(vals)):
+    if metadataInconsistency > 0:
+      break
+    cFrame = vals[it]
+    if cFrame < 3:
+      continue
+    cPixel = (width*height*(fileType)+gap+64)*(cFrame-2)+offset+64+width*height*(fileType)+2
     fID.seek(cPixel)
     md_new = struct.unpack('<h', fID.read(2))[0]
     if(md_new != md_old):
-      metadataInconsistency = val
-      break
+      # Let's narrow the search
+      nvals = range(vals[it-1], vals[it]+1)
+      print nvals
+      for it2 in range(0, len(nvals)):
+        cFrame = nvals[it2]
+        if cFrame < 3:
+          continue
+        cPixel = (width*height*(fileType)+gap+64)*(cFrame-2)+offset+64+width*height*(fileType)+2
+        fID.seek(cPixel)
+        md_new = struct.unpack('<h', fID.read(2))[0]
+        print md_new
+        if(md_new != md_old):
+          metadataInconsistency = cFrame
+          offset = cPixel+gap
+          gap = md_new
+          break
+        md_old = md_new
     md_old = md_new
 
   metadataStr = beginMetadata()
@@ -131,7 +150,7 @@ def main():
   finfo.nImages = frames
   finfo.offset = offset+64
   finfo.fileType = fileType-1
-  finfo.intelByteOrder = 0
+  finfo.intelByteOrder = 1
   finfo.gapBetweenImages = gap+64
   finfo.fileFormat = 1
   finfo.samplesPerPixel = 1
